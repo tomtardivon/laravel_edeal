@@ -1,0 +1,7 @@
+body {
+    background: url('https://images.laprovence.com/media/hermes/2014-07/2014-07-18/20140718_1_6_1_1_0_obj6873353_1.jpg?twic=v1/focus=0x0/cover=930x523') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+  }
