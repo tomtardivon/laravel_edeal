@@ -4,4 +4,3 @@
     @include('pieces.new_piece',['piece'=>new \App\Models\Piece()])
 @endsection
 
-<!-- @extends('layouts.footer') -->

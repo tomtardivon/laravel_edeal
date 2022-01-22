@@ -10,7 +10,8 @@
       <div class="row mt-3">
        <!-- LOGO  -->  
         <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">              
-          <img src="{{Storage::url('img/logo.png')}}" alt="E-Deal" width="110" class="d-inline-block align-top">        
+          <!-- <img src="{{Storage::url('img/logo.png')}}" alt="E-Deal" width="110" class="d-inline-block align-top">      -->
+          <img src="images/Logos dégradé 2-100.jpg"  width="110" style="d-inline-block align-top" >   
         <span style="display : none">E-DEAL</span> 
         </div>
        <!-- INTERFACE DE GESTION DE CONTENUE -->

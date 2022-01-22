@@ -25,9 +25,14 @@ Route::get('/apprenant_recherche', [App\Http\Controllers\apprenant\apprenantCont
 
 
 Route::get('/apprenant_biblio',  [PieceController::class, 'showbiblio'])->name('showbiblio');
+
+
 Route::post('/pieces_store', [PieceController::class, 'store'])->name('pieces_store');
+
+Route::get('/pieces_delete/{id}', [PieceController::class, 'delete'])->name('pieces_delete');
+
 Route::get('/pieces_edit', [PieceController::class, 'edit'])->name('pieces_edit');
-Route::get('/pieces_delete', [PieceController::class, 'delete'])->name('pieces_delete');
+
 Route::get('tag/{slug}',[PieceController::class, 'tag'])->name('pieces_tag');
 
 

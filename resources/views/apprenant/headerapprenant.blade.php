@@ -9,15 +9,6 @@
      <!-- Favicon-->
      <link rel="icon" type="image/x-icon" href="assets/4815Favicon.ico" />
     
-    <title>EDEAL</title>
-
- 
-
-
-
-
-
-   
     
     
     
@@ -131,7 +122,7 @@
 <!-- Content-->
 @yield('content')
  <!-- Footer-->
- </div>
+ 
  @extends('layouts.footer')
          <div class=" container"><p class=" text-center text-white"> Edeal : Electronical and Digital Environment for Apprenticeship and Learning </p></div>
             <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Edeal 2022</p></div>

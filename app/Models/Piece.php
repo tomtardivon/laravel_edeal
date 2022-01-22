@@ -17,9 +17,7 @@ class Piece extends Model
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
-     */
-
-     
+     */     
     
    
 
@@ -27,8 +25,8 @@ class Piece extends Model
         'nom_piece',
         'description_piece',
         'image_piece',
-        'model2D_piece',
-        'model3D_piece',
+        'modele3D',
+        'modele2D',
         'tag',
         'type_piece',
     ];
