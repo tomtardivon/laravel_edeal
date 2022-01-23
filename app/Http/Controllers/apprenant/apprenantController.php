@@ -5,6 +5,8 @@ namespace App\Http\Controllers\apprenant;
 use App\Models\Piece;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class apprenantController extends Controller
 {
@@ -14,10 +16,34 @@ class apprenantController extends Controller
       public function index() { 
         return view('apprenant.acceuilapprenant'); 
       } 
-      public function showprofil()
-    { 
-        return view('apprenant.profilapprenant');  
+    public function showprofil()
+      {
+          $id =  Auth::user()->id;
+          return view('apprenant.profilapprenant');
+      }
+
+    public function showprofil_update(Request $request)
+    {
+        $id =  Auth::user()->id ;
+
+        $User = User::find($id);
+        $User->name = $request->get('name');
+        $User->email = $request->get('email');
+
+        $User->save();
+        return redirect('apprenant_profilapprenant')->with('success','Vos changements ont bien été effectués.');
     }
+
+    public function showcours()
+    { 
+        return view('apprenant.cours');  
+    }
+    public function showexcours()
+    { 
+        return view('apprenant.excours');  
+    }
+
+
     public function showprojet()
     { 
         return view('apprenant.projet');  
@@ -30,6 +56,8 @@ class apprenantController extends Controller
     { 
         return view('apprenant.model3D');  
     }
+
+    
 
 
     // public function showbiblio()

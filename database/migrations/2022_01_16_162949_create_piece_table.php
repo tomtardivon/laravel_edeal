@@ -16,7 +16,7 @@ class CreatePieceTable extends Migration
         Schema::create('pieces', function (Blueprint $table) {
             $table->id();
             $table->string('nom_piece');
-            $table->string('description_piece');
+            $table->text('description_piece');
             $table->string('image_piece')->default(Storage::url('Images/piéces/illustration/default.jpg'));
             $table->string('modele3D')->default(Storage::url('Images/piéces/modele3D/default.jpg'));
             $table->string('modele2D')->default(Storage::url('Images/piéces/modele2D/default.jpg'));            

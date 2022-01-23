@@ -10,33 +10,20 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-  
-         <script src="{{ asset('/public/js/app.js') }}" defer></script>
-        <script src="https://code.jquery.com/ui/1.13.0-rc.1/jquery-ui.min.js" integrity="sha256-99EbVPLVptiwdCNWDh/DN9qe/8Lntijxrvsf3YGPO7k=" crossorigin="anonymous"></script>
-        <script src="js/bootstrap-tokenfield.js"></script>
-
-         
-
+    <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
-    <!-- <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"> -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('/public/css/app.css') }}" rel="stylesheet">
-    <link href="/css/app.css" rel="stylesheet">    
-    <link rel="stylesheet" href="/public/css/bootstrap-tokenfield.css">
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/smoothness/jquery-ui.css">
-
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-
-
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-            <a class="navbar-brand" href="{{ url('/') }}"> Projet Edeal </a>
+            <a class="navbar-brand" href="{{ url('/') }}"> Proj </a>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
@@ -65,17 +52,10 @@
             </div>
         </nav>
 
-        <main class="py-4">
-           
-            @yield('content')
-        </main>
+        <div class="card-body">
+    @yield("content")
+ 
     </div>
-
-
-    
-
-    
-
-
+    </div>
 </body>
 </html>

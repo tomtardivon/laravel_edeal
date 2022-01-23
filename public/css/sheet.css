@@ -1,5 +1,5 @@
 body {
-     background: url('https://www.pole-emploi.fr/files/live/sites/PE/files/images/Photos%20ajouts/LeDossier/Armee/Marins-850x523.jpg') no-repeat center center fixed;
+     background: url('/images/fond.jpg') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;

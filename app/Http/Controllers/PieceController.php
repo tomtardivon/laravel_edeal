@@ -6,6 +6,7 @@ use App\Models\Tag;
 use App\Models\Piece;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 
 
@@ -66,7 +67,7 @@ class PieceController extends Controller
 
 
   private function renderIdex($pieceQuery) {
-     $pieces = $pieceQuery->with('tags')->paginate(12);    
+     $pieces = $pieceQuery->with('tags')->paginate(9);    
      $tags= Tag::all();     
      $max = Tag::max('piece_count');
      return view('apprenant.biblio',[
@@ -97,9 +98,28 @@ class PieceController extends Controller
   public function edit(Piece $piece){
     
     $piece;
-    return view('pieces.edit_piece',['piece'=>$piece]);
+    return view('pieces.new_piece',['piece'=>$piece]);
 
   }
+
+  public function edite($id)
+  {
+
+      $edit_piece =  Piece::find($id);
+     
+      $tags= Tag::all(); 
+      $tags = DB::table('piece_tag')
+            ->join('tags', 'piece_tag.tag_id', '=', 'tags.id')
+            ->where('piece_tag.piece_id', $id)
+            ->value('tags.name');
+          
+      return view('pieces.edit_piece')->with(array(
+        "edit_piece"=>$edit_piece,
+        "tags"=>$tags,
+
+    ));
+  }
+
 
   public function delete($id_delete){
 
@@ -110,12 +130,39 @@ class PieceController extends Controller
 
   }
 
-  public function update(Request $request , Piece $piece){
-    $piece->update($request->all());
-    $piece->saveTags($request->get('tags'));
-    return redirect()->route('piece.showbiblio')->with('success','piece enregister');
+  public function update(Request $request, $id){
+
+
+    
+    
+    $piece = Piece::find($id);
+    $piece->nom_piece = $request->get('nom_piece');
+    $piece->description_piece = $request->get('description_piece');
+
+   /*  $piece->path_image_piece = $request->get('image_piece');
+    $piece->path_model3D_piece = $request->get('modele3D');
+    $piece->path_model2D_piece = $request->get('modele2D'); */
+
+    $piece->save();
+    $piece->saveTags($request->get('tag_piece'));
+
+
+    return redirect()->route('showbiblio');
 
   }
+
+  public function showprofil_update(Request $request)
+  {
+      $id =  Auth::user()->id ;
+
+      $User = User::find($id);
+      $User->name = $request->get('name');
+      $User->email = $request->get('email');
+
+      $User->save();
+      return redirect('apprenant_profilapprenant')->with('success','Vos changements ont bien été effectués.');
+  }
+
 
 
   public function showpiece()

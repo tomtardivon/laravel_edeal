@@ -1,4 +1,8 @@
 
+@extends('apprenant.headerapprenant')
+@section('content')
+   
+    
 
 
 
@@ -45,3 +49,5 @@
         </form>
     </div>      
 </div>
+
+@endsection
