@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('statut');
+            $table->string('avatar')->default(Storage::url('Images/avatar/default.jpg'));
            
         });
     }

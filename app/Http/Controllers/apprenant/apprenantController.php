@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
+
+
 
 class apprenantController extends Controller
 {
@@ -24,14 +28,35 @@ class apprenantController extends Controller
 
     public function showprofil_update(Request $request)
     {
+
         $id =  Auth::user()->id ;
 
         $User = User::find($id);
+
+        
+        if($request->avatar ) {
+
+            $filename_image_avatar = time().'.'.$request->avatar->extension();
+
+            $path_image_avatar = $request->avatar->storeAs(
+                'images/avatar/',
+                $filename_image_avatar,
+                'public'
+            );
+            
+        
+            $User->avatar = $path_image_avatar;
+    
+        }
+
+    
         $User->name = $request->get('name');
         $User->email = $request->get('email');
+        
 
         $User->save();
         return redirect('apprenant_profilapprenant')->with('success','Vos changements ont bien été effectués.');
+
     }
 
     public function showcours()

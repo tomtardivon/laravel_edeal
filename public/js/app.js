@@ -32,7 +32,13 @@
 // const app = new Vue({
 //     el: '#app',
 // });
-
+$('#tokenfield').tokenfield({
+  autocomplete: {
+    source: "search.php",
+    minLength: 2
+  },
+  showAutocompleteOnFocus: true
+});
 
 /***/ }),
 

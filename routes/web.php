@@ -39,6 +39,13 @@ Route::post('/pieces_store', [PieceController::class, 'store'])->name('pieces_st
 
 Route::get('/pieces_delete/{id}', [PieceController::class, 'delete'])->name('pieces_delete');
 
+Route::get('/pieces_details/{id}', [PieceController::class, 'details'])->name('pieces_details');
+
+Route::get('/pieces_details_3d/{id}', [PieceController::class, 'pieces_details_3d'])->name('pieces_details_3d');
+
+
+Route::get('/search', [PieceController::class, 'search'])->name('pieces.search');
+
 Route::get('/pieces_edit/{id}', [PieceController::class, 'edite'])->name('pieces_edite');
 Route::get('/pieces_edit', [PieceController::class, 'edit'])->name('pieces_edit');
 
@@ -50,4 +57,7 @@ Route::get('tag/{slug}',[PieceController::class, 'tag'])->name('pieces_tag');
 
 
 Auth::routes();
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/', function(){
+    return redirect()->route('login');
+});

@@ -5,81 +5,6 @@
 
 @section('content')
 
-
-    {{-- <div class="container-fluid ">
-
-        <div class=" h-100 row bg-secondary col-lg-2" style="float: left !important; ">
-
-            <div class="justify-content-end  text-center">
-                @foreach ($tags as $tag)
-                    <a style="font-size:{{ 1 + round($tag->piece_count / $max_tags, 2) }}rem;"
-                        href="{{ route('pieces_tag', ['slug' => $tag->slug]) }}" class="">
-                        {{ $tag->name }}
-                    </a>
-                @endforeach
-
-            </div>
-            <div class="justify-content-end  text-center">
-                <a href="{{ route('pieces_edit') }}" class="btn default"> nouvelle piece </a>
-            </div>
-
-        </div>
-
-        <div class="row  col-lg-10 bg-success" , style="">
-
-            @foreach ($pieces as $piece)
-                <div class="col-lg-2">
-                    <div class="card m-2" style=" ">
-                        <!-- <img src= "{{ asset('storage/users/' . $piece->image_piece) }}">
-
-                                            <img src="images/Logos dégradé 2-100.jpg"  width="110" style="d-inline-block align-top" > -->
-                        <img src="{{ asset('storage/' . $piece->image_piece) }}">
-                        <!--images/piéces/illustration/1642882732.jpg  -->
-                        <div class="card-body">
-
-                            <h2><a href="">{{ $piece->nom_piece }}</a> </h2>
-                            <p>{{ $piece->description_piece }}</p>
-
-                            @foreach ($piece->tags as $tag)
-
-
-                                <a href="{{ route('pieces_tag', ['slug' => $tag->slug]) }}"
-                                    class="">{{ $tag->name }} </a>
-
-                            @endforeach
-
-
-
-                            <form method="get" action="{{ route('pieces_delete', ['id' => $piece->id]) }}"
-                                id="delete_form">
-                                <a href="{{ route('pieces_edit', $piece) }}" class="btn default"> editer </a>
-                                <button type="submit" form="delete_form" class="btn default"
-                                    value="Submit">delete</button>
-                            </form>
-                        </div>
-
-
-                    </div>
-
-
-
-                </div>
-            @endforeach
-            <div class="text-center displayed" style>
-                {{ $pieces->links('pagination::bootstrap-4') }}
-            </div>
-
-        </div>
-    </div> --}}
-
-
-
-    
-
-
-
-
-
     <section class="py-3">
         <div class="container">
             <div class="row">
@@ -96,20 +21,23 @@
                                     <ul class="list-inline mb-0 g-3">
                                         <!-- Item -->
                                         @foreach ($tags as $tag)
-                                        <li class="list-inline-item mb-2">
-                                            <a style="font-size:{{ 1 + round($tag->piece_count / $max_tags, 2) }}rem;"
-                                            href="{{ route('pieces_tag', ['slug' => $tag->slug]) }}" class="nav-link d-flex py-75">
-                                            <label class="btn btn-light btn-primary-soft-check" > {{ $tag->name }}</label>
-                                            </a>
-                                        </li>
+                                            <li class="list-inline-item mb-2">
+                                                <a style="font-size:{{ 1 + round($tag->piece_count / $max_tags, 2) }}rem;"
+                                                    href="{{ route('pieces_tag', ['slug' => $tag->slug]) }}"
+                                                    class="nav-link d-flex py-75">
+                                                    <label class="btn btn-light btn-primary-soft-check">
+                                                        {{ $tag->name }}</label>
+                                                </a>
+                                            </li>
                                         @endforeach
                                     </ul>
                                 </div>
-
+                                @if ( Auth::user()->statut  == 'formateur')
                                 <div style="margin-bottom: 20px" class="d-grid p-2 p-lg-0 text-center">
-                                <a href="{{ route('pieces_edit') }}" class="btn-card"> nouvelle piece </a>
+                                    <a href="{{ route('pieces_edit') }}" class="btn-card"> nouvelle piece </a>
                                 </div>
-                                
+                                 @endif
+
 
                                 <!-- Category START -->
                                 <div class="card card-body shadow p-4 mb-4">
@@ -341,7 +269,7 @@
                             <div class="d-grid p-2 p-lg-0 text-center">
                                 <button class="btn btn-primary mb-0">Filtrer</button>
                             </div>
-                            
+
                         </div>
 
 
@@ -353,10 +281,10 @@
 
                         <!-- Search bar -->
                         <div class="col-md-9">
-                            <form class="border rounded p-2">
+                            <form action="{{ route('pieces.search') }}" class="border rounded p-2">
                                 <div class="input-group input-borderless">
-                                    <input class="form-control me-1" type="search" placeholder="Tapez ici">
-                                    <button type="button" class="btn btn-primary mb-0 rounded z-index-1">
+                                    <input name="q" class="form-control me-1" type="search" placeholder="Tapez ici">
+                                    <button type="submit" class="btn btn-primary mb-0 rounded z-index-1">
                                         Rechercher</button>
                                 </div>
                             </form>
@@ -368,8 +296,11 @@
                                     <div class="col-sm-6 col-xl-4">
                                         <div class="card shadow h-100">
                                             <!-- Image -->
-                                            <img src={{ asset('storage/' . $piece->image_piece) }}
-                                                class="card-img-top" alt="course image">
+                                            <a class=""
+                                                href="{{ route('pieces_details', ['id' => $piece->id]) }}">
+                                                <img src={{ asset('storage/' . $piece->image_piece) }}
+                                                    class="card-img-top" alt="course image">
+                                            </a>
                                             <!-- Card body -->
                                             <div class="card-body pb-0">
                                                 <!-- Badge and favorite -->
@@ -395,13 +326,15 @@
                                             </div>
                                             <!-- Card footer -->
                                             <div class="card-footer pt-0 pb-3">
-{{--                                                 <div class="d-flex justify-content-between">
+                                                {{-- <div class="d-flex justify-content-between">
                                                     <span class="h6 fw-light mb-0"><i
                                                             class="far fa-clock text-danger me-2"></i>3h 56m</span>
                                                     <span class="h6 fw-light mb-0"><i
                                                             class="fas fa-table text-orange me-2"></i>15 lectures</span>
                                                 </div> --}}
 
+                                              
+                                            @if ( Auth::user()->statut  == 'formateur')
                                                 <div class="row" style="margin-top: 20px">
 
                                                     <!-- panel-footer -->
@@ -409,7 +342,8 @@
                                                         <a class=""
                                                             href="{{ route('pieces_edite', ['id' => $piece->id]) }}">
                                                             <button type="submit" form="delete_form"
-                                                                class="btn btn-primary " style="background-color: #0b5ed7"
+                                                                class="btn btn-primary "
+                                                                style="background-color: #0b5ed7"
                                                                 value="Submit">Editer</button></a>
                                                     </div>
                                                     <div class="col-6 text-center">
@@ -423,6 +357,9 @@
                                                     </div>
 
                                                 </div>
+                                            @else
+                                            @endif
+
                                             </div>
                                         </div>
                                     </div>
@@ -431,7 +368,7 @@
                                 <div class="text-center displayed" style>
                                     {{ $pieces->links('pagination::bootstrap-4') }}
                                 </div>
-                                
+
                             </div>
 
                             <!-- Responsive offcanvas body END -->

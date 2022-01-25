@@ -45,16 +45,14 @@ class PieceController extends Controller
     );
 
 
-
-   
-
           
     $piece = Piece::create([
       'nom_piece'=>$request->get('nom_piece'),
       'description_piece'=>$request->get('description_piece'),
       'image_piece'=>$path_image_piece,
       'modele3D'=> $path_model3D_piece,
-      'modele2D'=> $path_model2D_piece   
+      'modele2D'=> $path_model2D_piece
+        
 
     ]);   
     
@@ -104,7 +102,7 @@ class PieceController extends Controller
 
   public function edite($id)
   {
-
+   
       $edit_piece =  Piece::find($id);
      
       $tags= Tag::all(); 
@@ -120,7 +118,34 @@ class PieceController extends Controller
     ));
   }
 
+  public function details($id)
+  {
 
+      $details_piece =  Piece::find($id);
+      $tags= Tag::all(); 
+      $tags = DB::table('piece_tag')
+            ->join('tags', 'piece_tag.tag_id', '=', 'tags.id')
+            ->where('piece_tag.piece_id', $id)
+            ->value('tags.name');
+          
+      return view('pieces.details_piece')->with(array(
+        "details_piece"=>$details_piece,
+        "tags"=>$tags,
+
+    ));
+  }
+
+  public function pieces_details_3d($id)
+  {
+
+      $details_piece3d =  Piece::find($id);
+        
+      return view('pieces.details_piece3d')->with(array(
+        "details_piece3d"=>$details_piece3d,
+
+
+    ));
+  }
   public function delete($id_delete){
 
     $deleted_piece= Piece::find($id_delete);
@@ -131,14 +156,52 @@ class PieceController extends Controller
   }
 
   public function update(Request $request, $id){
-
-
-    
-    
     $piece = Piece::find($id);
     $piece->nom_piece = $request->get('nom_piece');
     $piece->description_piece = $request->get('description_piece');
 
+    if($request->image_piece) {
+
+      $filename_image_piece = time().'.'.$request->image_piece->extension();
+
+      $path_image_piece = $request->image_piece->storeAs(
+        'images/piéces/illustration',
+        $filename_image_piece,
+        'public'
+    );
+    
+    $piece->image_piece = $path_image_piece;
+
+    }
+    
+    if($request->modele3D) {
+
+      $filename_modele3D = time().'.'.$request->modele3D->extension();
+
+      $path_model3D_piece = $request->modele3D->storeAs(
+        'images/piéces/modele3D',
+        $filename_modele3D,
+        'public'
+    );
+
+    $piece->modele3D = $path_model3D_piece;
+    }
+
+    if($request->modele2D ) {
+
+      $filename_modele2D = time().'.'.$request->modele2D->extension();
+
+
+    $path_model2D_piece = $request->modele2D->storeAs(
+      'images/piéces/modele2D',
+      $filename_modele2D,
+      'public'
+    );    
+    
+    $piece->modele2D = $path_model2D_piece;
+
+    }
+    
    /*  $piece->path_image_piece = $request->get('image_piece');
     $piece->path_model3D_piece = $request->get('modele3D');
     $piece->path_model2D_piece = $request->get('modele2D'); */
@@ -163,8 +226,24 @@ class PieceController extends Controller
       return redirect('apprenant_profilapprenant')->with('success','Vos changements ont bien été effectués.');
   }
 
+  public function search()
+  {
+    $q = request()->input('q');
+    $pieces = Piece::where('nom_piece','like',"%$q%")
+    ->orWhere('description_piece','like',"%$q%")
+    ->paginate(6);
+    $tags= Tag::all();
+    
+
+    return view('pieces.search_piece')->with(array(
+      "pieces"=>$pieces,
+      "tags"=>$tags,
+
+  ));
+  }
 
 
+  
   public function showpiece()
   {
 

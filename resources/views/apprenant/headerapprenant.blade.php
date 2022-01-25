@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="assets/4815Favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="../../assets/4815Favicon.ico" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <title>EDEAL</title>
@@ -43,7 +43,7 @@
         <div class="container">
             <div class="row justify-content-center md-0">
                 <a class="navbar-brand" href="/apprenant_acceuilapprenant">
-                    <img src="images/LogoEDEAL.png" width="90" height="90" class="d-inline-block align-top" alt="">
+                    <img src="../../images/LogoEDEAL.png" width="90" height="90" class="d-inline-block align-top" alt="">
 
                 </a>
             </div>
@@ -79,13 +79,7 @@
                         <a class="nav-link" href="/apprenant_recherche">Recherche avancée</a>
                     </li>
                 </ul>
-                <form class="form-inline">
-                    <div class="input-group search-box">
-                        <input type="text" class="form-control" placeholder="Que cherchez-vous?"
-                            aria-label="Search for...">
-
-                    </div>
-                </form>
+                @include('partials.search')
             </div>
 
         </div>
@@ -128,15 +122,14 @@
     @yield('content')
     <!-- Footer-->
 
-    <footer style="" class="bs-5 bg-dark">
+    <footer style="margin-top: 200px;" class="bs-5 bg-dark">
         <div class=" bg-primary">
             <div class=" container ">
                 <div class="row">
                     <div class="col-sm">
-                        <h5 style="color:#ffffff">E-DEAL</h5>
-                        <a href="/apprenant_acceuilapprenant" class="footer-logo"
-                            style="color:#ffffff; text-decoration: none;"> <img src="../../images/LogoEDEAL.png" width="100"
-                                height="100" class="d-inline-block align-center" alt=""> </a>
+                                               <a href="/apprenant_acceuilapprenant" class="footer-logo"
+                            style="color:#ffffff; text-decoration: none;"> <img src="../../images/Logo_E-DEAL_blanc.png" width="120"
+                                height="130" class="d-inline-block align-center" alt=""> </a>
                     </div>
                     <div class="col-sm">
                         <h5>

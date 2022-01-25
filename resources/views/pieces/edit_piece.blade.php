@@ -37,7 +37,7 @@
 
             <div class="form-group p-2">
                 <label  class="form-label" for="model3D_piece">modele3D</label>
-                <input type="file" id="modele3D" class=" form-control block my-2"     name="modele3D"      accept="image/png, image/jpeg , image/jpg " value="{{$edit_piece->modele3D}}" placeholder="model3D_piece">
+                <input type="file" id="modele3D" class=" form-control block my-2"     name="modele3D"       value="{{$edit_piece->modele3D}}" placeholder="model3D_piece">
             </div>
 
             <div class="form-group p-2">

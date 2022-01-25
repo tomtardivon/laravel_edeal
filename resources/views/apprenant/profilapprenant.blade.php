@@ -13,13 +13,15 @@
                                 <div class="rounded-top text-white d-flex flex-row"
                                     style="background-image: url('https://www.lesbateliersdelarade.com/assets/images/cdg-1014x676.png'); height:200px;">
                                     <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
-                                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
+                                        <img src={{ asset('storage/' .Auth::user()->avatar) }} alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
+                                        style="width: 150px; z-index: 1">
+                                    {{--     <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
                                             alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
-                                            style="width: 150px; z-index: 1">
+                                            style="width: 150px; z-index: 1"> --}}
                                     </div>
                                     <div class="ms-3" style="margin-top: 90px;">
                                         <h5>{{ Auth::user()->name }} </h5>
-                                        <p>Etudiant</p>
+                                        <p>Etudiant {{ Auth::user()->avatar }}</p>
 
                                     </div>
                                     <div>
@@ -30,7 +32,7 @@
                                     <div class="row justify-content-center">
                                         <div class="col-lg-6 bg-white" style="width:800px">
                                             <label>Nom d'utilisateur</label>
-                                            <form method="POST" action="{{ route('showprofil_update', '$id') }}">
+                                            <form method="POST" enctype="multipart/form-data" action="{{ route('showprofil_update', '$id') }}">
                                                 @if (session('success'))
                                                     <div class="container">
                                                         <div class="alert alert-success">
@@ -59,6 +61,21 @@
                                                         id="button-addon2" data-mdb-ripple-color="dark">
                                                         Modifier
                                                     </button>
+                                                </div>
+
+                                                    <label>Avatar</label>
+                                                    <div class="input-group mb-3">
+                                                        <input type="file" name="avatar" id="avatar" class="form-control"
+                                                            id="account-e-mail" placeholder="Email"
+                                                            value="{{ Auth::user()->avatar }}"
+                                                            data-validation-required-message="This email field is required">
+                                                        <button type="submit" class="btn btn-primary" type="button"
+                                                            id="button-addon2" data-mdb-ripple-color="dark">
+                                                            Modifier
+                                                        </button>
+                                                    </div>
+
+
                                             </form>
                                         </div>
                                     </div>
