@@ -26,7 +26,7 @@
           document.body.appendChild(renderer.domElement);
           renderer.shadowMapEnabled = true;
     
-          renderer.setSize(1900, window.innerHeight);
+          renderer.setSize( window.innerWidth, window.innerHeight);
           renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
           document.body.appendChild(renderer.domElement);
     

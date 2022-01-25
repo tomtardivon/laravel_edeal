@@ -21,7 +21,7 @@
                                     </div>
                                     <div class="ms-3" style="margin-top: 90px;">
                                         <h5>{{ Auth::user()->name }} </h5>
-                                        <p>Etudiant {{ Auth::user()->avatar }}</p>
+                                        <p>Etudiant</p>
 
                                     </div>
                                     <div>

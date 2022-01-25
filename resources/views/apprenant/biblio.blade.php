@@ -19,12 +19,20 @@
                                     <!-- Title -->
                                     <h4 class="mb-3">Tags</h4>
                                     <ul class="list-inline mb-0 g-3">
+
+                                        <li class="list-inline-item mb-2">
+                                            <a href="{{ route('showbiblio') }}"
+                                                >
+                                                <label class="btn btn-light btn-primary-soft-check">
+                                                    Tout</label>
+                                            </a>
+                                        </li>
                                         <!-- Item -->
                                         @foreach ($tags as $tag)
                                             <li class="list-inline-item mb-2">
                                                 <a style="font-size:{{ 1 + round($tag->piece_count / $max_tags, 2) }}rem;"
                                                     href="{{ route('pieces_tag', ['slug' => $tag->slug]) }}"
-                                                    class="nav-link d-flex py-75">
+                                                    >
                                                     <label class="btn btn-light btn-primary-soft-check">
                                                         {{ $tag->name }}</label>
                                                 </a>
@@ -46,14 +54,20 @@
                                     <!-- Category group -->
                                     <div class="col-12">
                                         <!-- Checkbox -->
+                                        @foreach ($tags as $tag)
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="form-check">
+                                                <a
+                                                    href="{{ route('pieces_tag', ['slug' => $tag->slug]) }}"
+                                                    >
                                                 <input class="form-check-input" type="checkbox" value=""
                                                     id="flexCheckDefault9">
-                                                <label class="form-check-label" for="flexCheckDefault9">Tout</label>
+                                                <label class="form-check-label" for="flexCheckDefault9"> {{ $tag->name }}</label>
+                                                </a>
                                             </div>
-                                            <span class="small">(1256)</span>
+                                            <span class="small">({{ $tag->piece_count}})</span>
                                         </div>
+                                    @endforeach
                                         <!-- Checkbox -->
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="form-check">
@@ -64,93 +78,7 @@
                                             </div>
                                             <span class="small">(365)</span>
                                         </div>
-                                        <!-- Checkbox -->
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    id="flexCheckDefault11">
-                                                <label class="form-check-label" for="flexCheckDefault11">Designe</label>
-                                            </div>
-                                            <span class="small">(156)</span>
-                                        </div>
-                                        <!-- Checkbox -->
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    id="flexCheckDefault12">
-                                                <label class="form-check-label" for="flexCheckDefault12">Accounting</label>
-                                            </div>
-                                            <span class="small">(65)</span>
-                                        </div>
-                                        <!-- Checkbox -->
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    id="flexCheckDefault17">
-                                                <label class="form-check-label" for="flexCheckDefault17">Translation</label>
-                                            </div>
-                                            <span class="small">(245)</span>
-                                        </div>
-                                        <!-- Checkbox -->
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    id="flexCheckDefault13">
-                                                <label class="form-check-label" for="flexCheckDefault13">Conception</label>
-                                            </div>
-                                            <span class="small">(184)</span>
-                                        </div>
-                                        <!-- Checkbox -->
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    id="flexCheckDefault14">
-                                                <label class="form-check-label" for="flexCheckDefault14">Juridique</label>
-                                            </div>
-                                            <span class="small">(65)</span>
-                                        </div>
-                                        <!-- Checkbox -->
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    id="flexCheckDefault15">
-                                                <label class="form-check-label" for="flexCheckDefault15">Photography</label>
-                                            </div>
-                                            <span class="small">(99)</span>
-                                        </div>
 
-                                        <!-- Collapse body -->
-                                        <div class="collapse multi-collapse" id="multiCollapseExample1">
-                                            <div class="card card-body p-0">
-                                                <!-- Checkbox -->
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckDefault16">
-                                                        <label class="form-check-label"
-                                                            for="flexCheckDefault16">Basic</label>
-                                                    </div>
-                                                    <span class="small">(178)</span>
-                                                </div>
-                                                <!-- Checkbox -->
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckDefault18">
-                                                        <label class="form-check-label"
-                                                            for="flexCheckDefault18">Marketing</label>
-                                                    </div>
-                                                    <span class="small">(104)</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Collapse button -->
-                                        <a class=" p-0 mb-0 mt-2 btn-more d-flex align-items-center"
-                                            data-bs-toggle="collapse" href="#multiCollapseExample1" role="button"
-                                            aria-expanded="false" aria-controls="multiCollapseExample1">
-                                            See <span class="see-more ms-1">more</span><span
-                                                class="see-less ms-1">less</span><i class="fas fa-angle-down ms-2"></i>
-                                        </a>
                                     </div>
                                 </div>
                                 <!-- Category END -->
@@ -293,7 +221,7 @@
                             <div class="row mb-4 align-items-center">
                                 <!-- Card item START -->
                                 @foreach ($pieces as $piece)
-                                    <div class="col-sm-6 col-xl-4">
+                                    <div style="margin-bottom:30px" class="col-sm-6 col-xl-4">
                                         <div class="card shadow h-100">
                                             <!-- Image -->
                                             <a class=""
