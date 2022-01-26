@@ -68,17 +68,6 @@
                                             <span class="small">({{ $tag->piece_count}})</span>
                                         </div>
                                     @endforeach
-                                        <!-- Checkbox -->
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    id="flexCheckDefault10">
-                                                <label class="form-check-label"
-                                                    for="flexCheckDefault10">Developement</label>
-                                            </div>
-                                            <span class="small">(365)</span>
-                                        </div>
-
                                     </div>
                                 </div>
                                 <!-- Category END -->

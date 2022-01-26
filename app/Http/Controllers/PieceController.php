@@ -238,6 +238,7 @@ class PieceController extends Controller
     return view('pieces.search_piece')->with(array(
       "pieces"=>$pieces,
       "tags"=>$tags,
+      "q"=>$q
 
   ));
   }
