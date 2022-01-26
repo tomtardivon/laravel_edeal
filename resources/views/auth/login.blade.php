@@ -124,12 +124,12 @@
                 </div>
                 <div class=" bg-primary" style="height: 100px ">
                     <div class=" container ">
-                        <p class=" justify-text text-white"> Pour des raisons de sécurité, veulliez vous déconnecter et
+                        <p class=" justify-text text-white"> Pour des raisons de sécurité, veuillez vous déconnecter et
                             fermer votre navigateur lorsque vous avez fini d'accéder aux services authentifiés. </p>
                     </div>
                     <div class="container">
                         <p class="m-0 justify-text text-white">Vos identifiants sont strictement confidentiels et ne
-                            doivent en aucun cas etre transmis à une tierce personne. </p>
+                            doivent en aucun cas être transmis à une tierce personne. </p>
                     </div>
 
                 </div>

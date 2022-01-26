@@ -215,7 +215,7 @@
                                             <!-- Image -->
                                             <a class=""
                                                 href="{{ route('pieces_details', ['id' => $piece->id]) }}">
-                                                <img src={{ asset('storage/' . $piece->image_piece) }}
+                                                <img style="max-width: 100%;max-height:191px;height: auto;" src={{ asset('storage/' . $piece->image_piece) }}
                                                     class="card-img-top" alt="course image">
                                             </a>
                                             <!-- Card body -->
